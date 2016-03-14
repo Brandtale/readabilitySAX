@@ -114,6 +114,19 @@ Element.prototype = {
 			if(typeof childs[i] === "string") continue;
 			if(childs[i].isCandidate){
 				elem = childs[i];
+
+        /*
+         * Workaround Section 1:
+         *
+         * Promote elements that have Buzzfeed listicle or Refinery29
+         * slideshow selectors.
+         *
+         */
+        if (elem.elementData.indexOf('bf_dom') >= 0 || elem.elementData.indexOf('slideshow-p-text') >= 0) {
+          elem.totalScore = 5000;
+          return elem;
+        }
+
 				//add points for the tags name
 				if(elem.name in tagCounts) elem.tagScore += tagCounts[elem.name];
 
@@ -157,7 +170,13 @@ var tagsToSkip = {__proto__:null,aside:true,footer:true,head:true,label:true,nav
     re_pages = /pag(?:e|ing|inat)/i,
     re_pagenum = /p[ag]{0,2}(?:e|ing|ination)?[=\/]\d{1,2}/i,
 
-    re_safe = /article-body|hentry|instapaper_body/,
+    /*
+     * Modified re_safe:
+     *
+     * Added the Refinery29 slideshow paragraph content tag so that its
+     * counted as valid paragraph content.
+     */
+    re_safe = /article-body|hentry|instapaper_body|slideshow-p-text/,
     re_final = /first|last/i,
 
     re_positive = /article|blog|body|content|entry|main|news|pag(?:e|ination)|post|story|text/,
