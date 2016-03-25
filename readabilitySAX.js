@@ -174,9 +174,10 @@ var tagsToSkip = {__proto__:null,aside:true,footer:true,head:true,label:true,nav
      * Modified re_safe:
      *
      * Added the Refinery29 slideshow paragraph content tag so that its
-     * counted as valid paragraph content.
+     * counted as valid paragraph content. Added food52 content class
+     * to prioritize inner content.
      */
-    re_safe = /article-body|hentry|instapaper_body|slideshow-p-text/,
+    re_safe = /article-body|article-content|hentry|instapaper_body|slideshow-p-text/,
     re_final = /first|last/i,
 
     re_positive = /article|blog|body|content|entry|main|news|pag(?:e|ination)|post|story|text/,
