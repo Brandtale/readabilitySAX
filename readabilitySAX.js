@@ -122,7 +122,7 @@ Element.prototype = {
          * slideshow selectors.
          *
          */
-        if (elem.elementData.indexOf('bf_dom') >= 0 || elem.elementData.indexOf('slideshow-p-text') >= 0) {
+        if (elem.elementData.indexOf('bf_dom') >= 0 || elem.elementData.indexOf('slideshow-p-text') >= 0 || elem.elementData.indexOf('content-parent') >= 0) {
           elem.totalScore = 5000;
           return elem;
         }
@@ -175,9 +175,10 @@ var tagsToSkip = {__proto__:null,aside:true,footer:true,head:true,label:true,nav
      *
      * Added the Refinery29 slideshow paragraph content tag so that its
      * counted as valid paragraph content. Added food52 content class
-     * to prioritize inner content.
+     * to prioritize inner content. Added Mode content-parent class
+     * to prioritize listicle full content.
      */
-    re_safe = /article-body|article-content|hentry|instapaper_body|slideshow-p-text/,
+    re_safe = /article-body|article-content|content-parent|hentry|instapaper_body|slideshow-p-text/,
     re_final = /first|last/i,
 
     re_positive = /article|blog|body|content|entry|main|news|pag(?:e|ination)|post|story|text/,
